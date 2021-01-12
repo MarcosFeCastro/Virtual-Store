@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil</title>
+</head>
+<body>
+    
+    <%- include( '../partials/menu.ejs' ) %> 
+
+    <h1>Meu perfil</h1>
+
+    <div>
+        <h2>Dados pessoais</h2>
+
+        <p><%= user.first_name %> <%= user.last_name %></p>
+        <p><%= user.email %></p>
+
+        <button onClick="showData()">Expandir</button>
+    </div>
+
+    <div>
+        <h2>Histórico de compras</h2>
+
+        <% orders.forEach( order => { %>
+    
+            <p>
+                <%= order.status %><br>
+                <%= order.payment_status %><br>
+                R$ <%= parseFloat( order.amount ).toFixed( 2 ) %><br>
+                <%= order.created_at %><br>
+                <a href="/pedido/<%= orders.id %>">Ver</a>
+            </p>
+    
+            <br>
+    
+        <% }) %>
+
+    </div>
+
+
+
+    <script>
+        function showData() {
+            console.log( 'Dados' )
+        }
+    </script>
+
+</body>
+</html>

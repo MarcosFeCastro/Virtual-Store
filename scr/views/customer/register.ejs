@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+</head>
+<body>
+
+    <%- include("../partials/menu.ejs") %> 
+    
+    <h1>Cadastre-se</h1>
+
+    <form action="/customer/register" method="post">
+
+        <div>
+            <label for="email">Email</label><br>
+            <input type="text" name="email" id="email" autocomplete="off">
+        </div>
+
+        <div>
+            <label for="password">Senha</label><br>
+            <input type="password" name="password" id="password" autocomplete="off">
+        </div>
+
+        <div>
+            <label for="cpf">CPF</label><br>
+            <input type="text" name="cpf" id="cpf" autocomplete="off">
+        </div>
+
+        <div>
+            <label for="first_name">Nome</label><br>
+            <input type="text" name="first_name" id="email" autocomplete="off">
+        </div>
+
+        <div>
+            <label for="last_name">Sobrenome</label><br>
+            <input type="text" name="last_name" id="last_name" autocomplete="off">
+        </div>
+
+        <div>
+            <label for="birthday">Data de nascimento</label><br>
+            <input type="text" name="birthday" id="birthday" autocomplete="off">
+        </div>
+
+        <div>
+            Sexo<br>
+            <input type="radio" name="sex" id="male" value="M">
+            <label for="male">Masculino</label>
+            <input type="radio" name="sex" id="female" value="F">
+            <label for="female">Feminino</label>
+        </div>
+
+        <div>
+            <input type="checkbox" name="email_ad" id="email_ad">
+            <label for="email_ad">Desejo receber ofertas por e-mail</label>
+        </div>
+
+        <button type="submit">Cadastra</button>
+
+    </form>
+
+    <br>
+
+    <div>
+        <a href="/entrar">Já possui conta</a>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar produto</title>
+</head>
+<body>
+
+    <%- include("../partials/menu.ejs") %>
+
+    <form action="/admin/produto/cadastro" method="post">
+    
+        <label for="name">Nome
+            <input type="text" name="name" id="name">
+        </label>
+
+        <label for="description">Descrição
+            <input type="text" name="description" id="description">
+        </label>
+
+        <label for="maker">Marcar
+            <input type="text" name="maker" id="maker">
+        </label>
+
+        <label for="price">Preço
+            <input type="text" name="price" id="price">
+        </label>
+        
+        <label for="quantity">Quantidade em estoque
+            <input type="number" name="quantity" id="quantity">
+        </label>
+
+        <label for="visible">Disponível para compra
+            <select name="visible" id="visible">
+                <option value="true">Disponível</option>
+                <option value="true">Indisponível</option>
+            </select>
+        </label>
+
+        <label for="">Categorias</label>
+        <label for="">Imagens</label>
+
+        <button type="submit">Cadastrar</button>
+        
+    </form>
+    
+</body>
+</html>

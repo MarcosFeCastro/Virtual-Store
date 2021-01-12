@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos</title>
+</head>
+<body>
+
+    <%- include("./partials/menu.ejs") %>
+    
+    <h1>Produtos</h1>
+
+    <% products.forEach( product => { %>
+    
+        <p>
+            <%= product.name %><br>
+            <%= product.description %><br>
+            <%= product.maker %><br>
+            <%= product.price %><br>
+            <%= product.quantity %><br>
+            <%= product.category %><br>
+            <a href="/produto/<%= product.id %>">Ver</a>
+        </p>
+
+        <br>
+
+    <% }) %>
+    
+</body>
+</html>

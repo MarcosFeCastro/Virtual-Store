@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clientes</title>
+</head>
+<body>
+
+    <%- include("../partials/menu.ejs") %>
+    
+    <h1>Lista de clientes</h1>
+
+    <% customers.forEach( customer => { %>
+    
+        <p>
+            <%= customer.first_name %><br>
+            <%= customer.last_name %><br>
+            <%= customer.email %><br>
+            <%= customer.phone %><br>
+            <%= customer.created_at %><br>
+            <%= customer.address.city %>
+        </p>
+
+        <a href="/admin/cliente/<%= customer.id %>">Ver perfil</a>
+
+        <br>
+
+    <% }) %>
+    
+</body>
+</html>

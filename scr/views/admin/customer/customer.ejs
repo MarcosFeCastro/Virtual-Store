@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cliente - </title>
+</head>
+<body>
+
+    <h1>Cliente - <%= customer.first_name %> <%= customer.last_name %></h1>
+
+    <p>
+        <%= customer.first_name %><br>
+        <%= customer.last_name %><br>
+        <%= customer.email %><br>
+        <%= customer.phone %><br>
+        <%= customer.created_at %><br>
+        <%= customer.address.city %>
+    </p>
+    
+</body>
+</html>

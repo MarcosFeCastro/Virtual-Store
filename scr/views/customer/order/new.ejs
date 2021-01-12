@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmar Compra</title>
+</head>
+<body>
+    
+    <h1>Confirmar</h1>
+    
+    <p><%= user.first_name %> <%= user.last_name %></p>
+    <p></p>
+
+    <form action="/payment" method="POST" id="form">
+    
+        <h2>Endereço</h2>
+
+        <div>
+            <label for="street">Rua</label><br>
+            <input type="text" name="street" id="street" autocomplete="off" value="<%= user.address.street %>">
+        </div>
+
+        <div>
+            <label for="city">Cidade</label><br>
+            <input type="text" name="city" id="city" autocomplete="off" value="<%= user.address.city %>">
+        </div>
+
+        <div>
+            <label for="state">Estado</label><br>
+            <input type="text" name="state" id="state" autocomplete="off" value="<%= user.address.state %>">
+        </div>
+
+        <div>
+            <label for="zip_code">CEP</label><br>
+            <input type="text" name="zip_code" id="zip_code" autocomplete="off" value="<%= user.address.zip_code %>">
+        </div>
+
+        <div>
+            <label for="address_2">Complemento</label><br>
+            <input type="text" name="address_2" id="address_2" autocomplete="off" value="<%= user.address.address_2 %>">
+        </div>
+
+        <h2>Fale com a loja</h2>
+
+        <div>
+            <label for="message">Mensagem</label><br>
+            <input type="text" name="message" id="message" autocomplete="off">
+        </div>
+    
+        <!-- <button type="button" onClick="submitform()">Confirmar compra</button> -->
+        <button type="submit">Confirmar compra</button>
+    
+    </form>
+
+    <script>
+        
+        function submitform() {
+
+            var xhr = new XMLHttpRequest()
+
+            var form = document.getElementById( 'form' )
+
+            xhr.open( form.method, form.action, true )
+            xhr.setRequestHeader( 'Content-Type', 'application/json; charset=UTF-8' )
+            
+            var products = localStorage.getItem( 'cart' )
+
+            var data = {
+                street: document.getElementById( 'street' ).value,
+                city: document.getElementById( 'city' ).value,
+                state: document.getElementById( 'state' ).value,
+                zip_code: document.getElementById( 'zip_code' ).value,
+                address_2: document.getElementById( 'address_2' ).value,
+
+                message: document.getElementById( 'message' ).value,
+
+                products: products
+            }
+
+
+            xhr.send( data )
+
+        }
+
+    </script>
+
+</body>
+</html>

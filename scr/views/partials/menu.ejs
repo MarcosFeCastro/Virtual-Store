@@ -1,0 +1,43 @@
+<nav>
+    <a href="/">Home</a>
+    <br>
+    <a href="/produtos">Produtos</a>
+    <br>
+    <a href="/carrinho">Carrinho <span id="qtdItens"></span></a>
+    <br>
+    <a href="/faq">Faq</a>
+    <br>
+    <a href="/entrar">Login</a> | <a href="/admin/home">Admin</a>
+    <br>
+</nav>
+
+<script>
+    
+    updateMenuQtdItens()
+
+    function updateMenuQtdItens() {
+        let qtd = JSON.parse( localStorage.getItem( 'cart' ) )
+        if( qtd ) {
+            if( qtd.length && qtd.length > 0 ) {
+                document.getElementById( 'qtdItens' ).innerText = qtd.length
+            } else {
+                document.getElementById( 'qtdItens' ).innerText = ''
+            }
+        } else {
+            document.getElementById( 'qtdItens' ).innerText = ''
+        }
+    }
+
+    // this function converts JSON into string to be entered into localStorage
+    function AddToLocalStorage( data ) {
+        if( typeof data != "string" ) {
+            data = JSON.stringify( data )
+        }
+        return data
+    }
+    // this function gets string from localStorage and converts it into JSON
+    function GetFromLocalStorage( key ) {
+        return JSON.parse( localStorage.getItem( key ) )
+    }
+
+</script>

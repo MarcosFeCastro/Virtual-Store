@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido</title>
+</head>
+<body>
+    
+    <h1>Pedido - <%= order._id %></h1>
+
+    <div>
+
+        <p><%= order.created_at %></p>
+        <p>R$ <%= order.amount.toFixed( 2 ) %></p>
+
+        
+
+        <button>Pagar</button>
+
+    </div>
+
+</body>
+</html>

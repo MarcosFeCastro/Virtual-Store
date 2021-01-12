@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+
+    <%- include("../partials/menu.ejs") %> 
+    
+    <h1>Login</h1>
+
+    <form action="/authenticate" method="post">
+        <label for="email">Email
+            <input type="text" name="email" id="email" autocomplete="off" value="test1@test.com">
+        </label>
+        <label for="password">Senha
+            <input type="password" name="password" id="password" autocomplete="off" value="12345678">
+        </label>
+        <button type="submit">Entrar</button>
+    </form>
+
+    <div>
+        <a href="/cadastro">Cadastrar-se</a>
+    </div>
+
+</body>
+</html>

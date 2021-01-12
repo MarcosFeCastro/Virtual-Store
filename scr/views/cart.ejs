@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho</title>
+</head>
+<body>
+
+    <%- include("./partials/menu.ejs") %> 
+    
+    <h1>Carrinho</h1>
+
+    <!-- <button onClick="clearCart()">Esvaziar carrinho</button> -->
+
+    <div id="list">
+
+    </div>
+
+    <div class="order">
+        <div id="order-info"></div>
+        <div id="opt">
+            <a href="/comprar">Comprar</a>
+            <!-- Pagamento, Confimar pagamento -->
+        </div>
+    </div>
+
+    <script>
+
+        var cart = GetFromLocalStorage( 'cart' ) ? GetFromLocalStorage( 'cart' ) : []
+        var products = []
+        var amount = 0.00
+        
+        fetch( '/list-itens', {
+            method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify( cart )
+        } ).then( response => response.json() ).then( data => { //console.log( data )
+            products = data
+            loadProducts()
+        } ).catch( error => { console.error( 'Error:', error )
+            loadProducts()
+        } )
+
+        function loadProducts() {
+            var htmlList = ''
+            amount = 0.00
+            cart.forEach( item => {
+                let i = products.findIndex( product => product._id == item.id )
+                //console.log( item, products[i] )
+                htmlList += `
+                
+                    <p>${ products[i].name }, ${ products[i].description }</p>
+                    <p>Qtd: ${ item.qtd } - Preço: R$ ${ parseFloat( products[i].price * item.qtd ).toFixed( 2 ) }</p>
+                    <button onClick="addItem( '${ item.id }' )">+</button>
+                    <button onClick="removeItem( '${ item.id }', '1' )">-</button>
+                    <button onClick="clearItem( '${ item.id }' )">Remover</button>
+                    <br><br>
+
+                `
+                amount += ( products[i].price * item.qtd ) 
+            } )
+            document.getElementById( 'list' ).innerHTML = htmlList
+
+            var hymlOrder = `
+
+                <p>Produtos: ${ cart.length }</p>
+                <p>Total: ${ parseFloat( amount ).toFixed( 2 ) }</p>
+
+            `
+            document.getElementById( 'order-info' ).innerHTML = hymlOrder
+            updateMenuQtdItens()
+        }
+
+        function addItem( id ) {
+            cart.find( function( item, i ) {
+                if( item.id === id ) { item.qtd++ }
+            } )
+            localStorage.setItem( 'cart', AddToLocalStorage( cart ) )
+            loadProducts()
+        }
+
+        function removeItem( id, qtd ) {
+            cart.find( function( item, i ) {
+                if( item.id === id ) {
+                    if( item.qtd > qtd ) { item.qtd = item.qtd - qtd }
+                }
+            } )
+            localStorage.setItem( 'cart', AddToLocalStorage( cart ) )
+            loadProducts()
+        }
+
+        function clearItem( id ) {
+            cart.find( function( item, i ) {
+                if( item.id === id ) { cart.splice( i, 1 ) }
+            } )
+            localStorage.setItem( 'cart', AddToLocalStorage( cart ) )
+            loadProducts()
+        }
+
+        function clearCart() {
+            localStorage.clear( 'cart' )
+            loadProducts()
+        }
+
+    </script>
+
+</body>
+</html>
